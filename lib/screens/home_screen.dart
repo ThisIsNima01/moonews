@@ -4,8 +4,20 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:news/constants/constants.dart';
 
-class HomeScreen extends StatelessWidget {
+enum TabNames {
+  RECOMMENDED,
+  FOLLOWING,
+}
+
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  TabNames _selectedTab = TabNames.RECOMMENDED;
 
   @override
   Widget build(BuildContext context) {
@@ -291,14 +303,30 @@ class HomeScreen extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 16),
               child: Row(
                 children: [
-                  Text(
-                    ' د5قیقه قبل',
-                    style: TextStyle(
-                      fontFamily: 'SM',
-                      fontSize: 12,
-                      color: mainGray,
-                      fontWeight: FontWeight.w700,
-                    ),
+                  Row(
+                    children: [
+                      Text(
+                        'دقیقه قبل',
+                        style: TextStyle(
+                          fontFamily: 'SM',
+                          fontSize: 12,
+                          color: mainGray,
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                      SizedBox(
+                        width: 4,
+                      ),
+                      Text(
+                        '۵',
+                        style: TextStyle(
+                          fontFamily: 'SM',
+                          fontSize: 12,
+                          color: mainGray,
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                    ],
                   ),
                   Spacer(),
                   Text(
@@ -383,42 +411,65 @@ class HomeScreen extends StatelessWidget {
         width: 380,
         height: 44,
         decoration: BoxDecoration(
-          color: mainBlack,
+          color: Colors.black.withOpacity(.1),
           borderRadius: BorderRadius.circular(22),
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            Container(
-              width: 166,
-              height: 36,
-              child: Center(
-                child: Text(
-                  'دنبال میکنید',
-                  style: TextStyle(
-                    color: mainGray,
-                    fontFamily: 'SM',
-                    fontWeight: FontWeight.w700,
-                    fontSize: 16,
+            GestureDetector(
+              onTap: () {
+                setState(() {
+                  _selectedTab = TabNames.FOLLOWING;
+                });
+              },
+              child: AnimatedContainer(
+                duration: Duration(milliseconds: 500),
+                width: 166,
+                height: 36,
+                decoration: BoxDecoration(
+                  color: _selectedTab == TabNames.FOLLOWING ? mainColor : null,
+                  borderRadius: BorderRadius.circular(18),
+                ),
+                child: Center(
+                  child: Text(
+                    'دنبال میکنید',
+                    style: TextStyle(
+                      color: _selectedTab == TabNames.FOLLOWING
+                          ? Colors.white
+                          : mainGray,
+                      fontFamily: 'SB',
+                      fontSize: 16,
+                    ),
                   ),
                 ),
               ),
             ),
-            Container(
-              width: 166,
-              height: 36,
-              decoration: BoxDecoration(
-                color: mainColor,
-                borderRadius: BorderRadius.circular(18),
-              ),
-              child: Center(
-                child: Text(
-                  'پیشنهادی',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontFamily: 'SM',
-                    fontWeight: FontWeight.w700,
-                    fontSize: 16,
+            GestureDetector(
+              onTap: () {
+                setState(() {
+                  _selectedTab = TabNames.RECOMMENDED;
+                });
+              },
+              child: AnimatedContainer(
+                duration: Duration(milliseconds: 500),
+                width: 166,
+                height: 36,
+                decoration: BoxDecoration(
+                  color:
+                      _selectedTab == TabNames.RECOMMENDED ? mainColor : null,
+                  borderRadius: BorderRadius.circular(18),
+                ),
+                child: Center(
+                  child: Text(
+                    'پیشنهادی',
+                    style: TextStyle(
+                      color: _selectedTab == TabNames.RECOMMENDED
+                          ? Colors.white
+                          : mainGray,
+                      fontFamily: 'SB',
+                      fontSize: 16,
+                    ),
                   ),
                 ),
               ),

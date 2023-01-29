@@ -42,9 +42,23 @@ class _SubtitleScreenState extends State<SubtitleScreen> {
             slivers: [
               SliverToBoxAdapter(
                 child: Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 24, vertical: 32),
-                  child: Image.asset('assets/images/banner-1.png'),
+                  padding: const EdgeInsets.symmetric(vertical: 32),
+                  child: Container(
+                    height: 160,
+                    width: double.infinity,
+                    child: ListView.builder(
+                      reverse: true,
+                      itemBuilder: (context, index) {
+                        return Container(
+                          margin: EdgeInsets.symmetric(horizontal: 24),
+                          child: Image.asset(
+                              'assets/images/banner-${index + 1}.png'),
+                        );
+                      },
+                      itemCount: 2,
+                      scrollDirection: Axis.horizontal,
+                    ),
+                  ),
                 ),
               ),
               SliverToBoxAdapter(
@@ -183,7 +197,7 @@ class _SubtitleScreenState extends State<SubtitleScreen> {
               height: 48,
               child: Marquee(
                 text:
-                    'برانکو تکذیب کرد/ نه با عمان فسخ کردم، نه با ایران مذاکره داشتم...   بی‌نظمی شدید در مراسم رونمایی از کاپ جام جهانی و قهر نماینده فیفا',
+                    ' / برانکو تکذیب کرد/ نه با عمان فسخ کردم، نه با ایران مذاکره داشتم...   بی‌نظمی شدید در مراسم رونمایی از کاپ جام جهانی و قهر نماینده فیفا',
                 textDirection: TextDirection.rtl,
                 style: TextStyle(
                   color: Colors.white,

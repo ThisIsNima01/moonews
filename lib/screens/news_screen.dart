@@ -69,13 +69,28 @@ class NewsScreen extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
-                    ' د5قیقه قبل',
-                    style: TextStyle(
-                      fontFamily: 'SB',
-                      fontSize: 12,
-                      color: mainGray,
-                    ),
+                  Row(
+                    children: [
+                      Text(
+                        'دقیقه قبل',
+                        style: TextStyle(
+                          fontFamily: 'SB',
+                          fontSize: 12,
+                          color: mainGray,
+                        ),
+                      ),
+                      SizedBox(
+                        width: 4,
+                      ),
+                      Text(
+                        '۵',
+                        style: TextStyle(
+                          fontFamily: 'SB',
+                          fontSize: 12,
+                          color: mainGray,
+                        ),
+                      ),
+                    ],
                   ),
                   Container(
                     width: 116,
